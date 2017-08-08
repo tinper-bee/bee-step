@@ -6,7 +6,7 @@ node_js:
   - "6"
 
 service_name: travis-ci
-repo_token: add
+repo_token: t3b6pCBtvMIY8GRATJyJsMF00TNPtVebN
 
 env:
   global:

@@ -15,22 +15,55 @@
 | IE 9+ ✔ | Chrome 31.0+ ✔ | Firefox 31.0+ ✔ | Opera 30.0+ ✔ | Safari 7.0+ ✔ |
 
 
-react bee-step component for tinper-bee
 
-some description...
+当任务复杂或具有子任务的系列一定的序列，我们可以将它分解成几个步骤，让事情变得更容易。
 
-## 使用方法
+## 使用
+使用单独的bee-step包
+#### 组件引入
+先进行下载bee-step包
 
 ```js
+```
+npm install --save bee-step
+
+```
+```js
+import Step from 'bee-step';
+const Steps = Step.Steps;
+class Demo1 extends Component {
+    render () {
+        return (
+            <Step.Steps current={1}>
+	            <Step title="Finished" description="This is a description." />
+	            <Step title="In Progress" description="This is a description." />
+	            <Step title="Waiting" description="This is a description." />
+	        </Step.Steps>
+        )
+    }
+}
+
+render(Demo1,document.getElementById('app'));
 
 ```
 
 
-
 ## API
 
-|参数|说明|类型|默认值|
-|:--|:---:|:--:|---:|
+|Property|Description|Type|Default|
+|:---|:-----|:----|:------|
+|status|自动设置当前step的状态（wait|process|finish|error）|string|-|
+|title|step的标题|（string|ReactNode）|-|
+|description|step的细节描述，可选的属性|（string|ReactNode）|-|
+|icon|设置当前step为icon,可选的属性|string|ReactNode）|-|
+
+### Step.Steps
+|Property|Description|Type|Default|
+|:---|:-----|:----|:------|
+|current|设置当前步骤，从0开始计数。可以使用步骤状态重写此状态。|number|0|
+|status|指定当前步骤的状态(danger|info|news|warning|sucess|process)|string|process|
+|size|设置step bar的大小(default|samll)|string|default|
+|direction|设置step bar的方向(horizontal|vertical)|string|horizontal|
 
 #### 开发调试
 

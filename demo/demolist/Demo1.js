@@ -1,7 +1,7 @@
 /**
 *
-* @title 这是标题
-* @description 这是描述
+* @title 常用基础 Step
+* @description current 标记当前机型哪一步
 *
 */
 

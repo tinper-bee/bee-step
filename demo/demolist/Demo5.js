@@ -1,4 +1,9 @@
-
+/**
+*
+* @title 指定状态的Step
+* @description  用step的status属性，指定当前step的状态
+*
+*/
 class Demo5 extends Component {
   render () {
       return (

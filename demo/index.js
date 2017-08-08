@@ -15,8 +15,8 @@ const CARETUP = <i className="uf uf-arrow-up"></i>;
 
 /**
 *
-* @title 这是标题
-* @description 这是描述
+* @title 常用基础 Step
+* @description current 标记当前机型哪一步
 *
 */
 
@@ -36,8 +36,8 @@ class Demo1 extends Component {
 }
 /**
 *
-* @title 这是标题
-* @description 这是描述
+* @title 自定义icon Step
+* @description
 *
 */
 
@@ -54,7 +54,12 @@ class Demo2 extends Component {
   }
 }
 
-
+/**
+*
+* @title 结合切换事件的 Step
+* @description 点击next，Step的流程跟进
+*
+*/
 
 const steps = [{
   title: 'First',
@@ -118,7 +123,12 @@ class Demo3 extends Component {
     );
   }
 }
-
+/**
+*
+* @title vertical Step
+* @description 
+*
+*/
 class Demo4 extends Component {
   render () {
       return (
@@ -131,7 +141,12 @@ class Demo4 extends Component {
         </div>
       )
   }
-}
+}/**
+*
+* @title 指定状态的Step
+* @description  用step的status属性，指定当前step的状态
+*
+*/
 class Demo5 extends Component {
   render () {
       return (
@@ -144,7 +159,7 @@ class Demo5 extends Component {
         </div>
       )
   }
-}var DemoArray = [{"example":<Demo1 />,"title":" 这是标题","code":"/**\n*\n* @title 这是标题\n* @description 这是描述\n*\n*/\n\nclass Demo1 extends Component {\n  render () {\n      return (\n        <div>\n          <Step.Steps current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n          </Step.Steps>\n        </div>\n      \n      )\n  }\n}\n","desc":" 这是描述"},{"example":<Demo2 />,"title":" 这是标题","code":"/**\n*\n* @title 这是标题\n* @description 这是描述\n*\n*/\n\nclass Demo2 extends Component {\n  render () {\n      return (\n        <Step.Steps>\n          <Step status=\"finish\" title=\"Login\" icon={<Icon type=\"uf-users-o\" />} />\n          <Step status=\"finish\" title=\"Verification\" icon={<Icon type=\"uf-personin-o\" />} />\n          <Step status=\"process\" title=\"Pay\" icon={<Icon type=\"uf-creditcard\" />} />\n          <Step status=\"wait\" title=\"Done\" icon={<Icon type=\"uf-correct-2\" />} />\n        </Step.Steps>\n      )\n  }\n}\n","desc":" 这是描述"},{"example":<Demo3 />,"title":"Demo3","code":"\n\n\nconst steps = [{\n  title: 'First',\n  content: 'First-content',\n}, {\n  title: 'Second',\n  content: 'Second-content',\n}, {\n  title: 'Last',\n  content: 'Last-content',\n}];\n\nclass Demo3 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      current: 0,\n    };\n  }\n  next() {\n    const current = this.state.current + 1;\n    this.setState({ current });\n  }\n  prev() {\n    const current = this.state.current - 1;\n    this.setState({ current });\n  }\n\n  alertDone() {\n    Message.create({content: 'done', color: 'info'});\n  }\n\n  render() {\n    const { current } = this.state;\n    return (\n      <div>\n        <Steps current={current}>\n          {steps.map(item => <Step key={item.title} title={item.title} />)}\n        </Steps>\n        <div className=\"steps-content\">{steps[this.state.current].content}</div>\n        <div className=\"steps-action\">\n          {\n            this.state.current < steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.next()}>Next</Button>\n          }\n          {\n            this.state.current === steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.alertDone()}>Done</Button>\n          }\n          {\n            this.state.current > 0\n            &&\n            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>\n              Previous\n            </Button>\n          }\n        </div>\n      </div>\n    );\n  }\n}\n","desc":""},{"example":<Demo4 />,"title":"Demo4","code":"\nclass Demo4 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps direction=\"vertical\" size=\"small\" current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n         </Steps>\n        </div>\n      )\n  }\n}","desc":""},{"example":<Demo5 />,"title":"Demo5","code":"\nclass Demo5 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps current={1} status=\"error\">\n            <Step title=\"Finished\" description=\"This is a description\" />\n            <Step title=\"In Process\" description=\"This is a description\" />\n            <Step title=\"Waiting\" description=\"This is a description\" />\n        </Steps>\n        </div>\n      )\n  }\n}","desc":""}]
+}var DemoArray = [{"example":<Demo1 />,"title":" 常用基础 Step","code":"/**\n*\n* @title 常用基础 Step\n* @description current 标记当前机型哪一步\n*\n*/\n\nclass Demo1 extends Component {\n  render () {\n      return (\n        <div>\n          <Step.Steps current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n          </Step.Steps>\n        </div>\n      \n      )\n  }\n}\n","desc":" current 标记当前机型哪一步"},{"example":<Demo2 />,"title":" 自定义icon Step","code":"/**\n*\n* @title 自定义icon Step\n* @description\n*\n*/\n\nclass Demo2 extends Component {\n  render () {\n      return (\n        <Step.Steps>\n          <Step status=\"finish\" title=\"Login\" icon={<Icon type=\"uf-users-o\" />} />\n          <Step status=\"finish\" title=\"Verification\" icon={<Icon type=\"uf-personin-o\" />} />\n          <Step status=\"process\" title=\"Pay\" icon={<Icon type=\"uf-creditcard\" />} />\n          <Step status=\"wait\" title=\"Done\" icon={<Icon type=\"uf-correct-2\" />} />\n        </Step.Steps>\n      )\n  }\n}\n","desc":""},{"example":<Demo3 />,"title":" 结合切换事件的 Step","code":"\n/**\n*\n* @title 结合切换事件的 Step\n* @description 点击next，Step的流程跟进\n*\n*/\n\nconst steps = [{\n  title: 'First',\n  content: 'First-content',\n}, {\n  title: 'Second',\n  content: 'Second-content',\n}, {\n  title: 'Last',\n  content: 'Last-content',\n}];\n\nclass Demo3 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      current: 0,\n    };\n  }\n  next() {\n    const current = this.state.current + 1;\n    this.setState({ current });\n  }\n  prev() {\n    const current = this.state.current - 1;\n    this.setState({ current });\n  }\n\n  alertDone() {\n    Message.create({content: 'done', color: 'info'});\n  }\n\n  render() {\n    const { current } = this.state;\n    return (\n      <div>\n        <Steps current={current}>\n          {steps.map(item => <Step key={item.title} title={item.title} />)}\n        </Steps>\n        <div className=\"steps-content\">{steps[this.state.current].content}</div>\n        <div className=\"steps-action\">\n          {\n            this.state.current < steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.next()}>Next</Button>\n          }\n          {\n            this.state.current === steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.alertDone()}>Done</Button>\n          }\n          {\n            this.state.current > 0\n            &&\n            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>\n              Previous\n            </Button>\n          }\n        </div>\n      </div>\n    );\n  }\n}\n","desc":" 点击next，Step的流程跟进"},{"example":<Demo4 />,"title":" vertical Step","code":"/**\n*\n* @title vertical Step\n* @description \n*\n*/\nclass Demo4 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps direction=\"vertical\" size=\"small\" current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n         </Steps>\n        </div>\n      )\n  }\n}","desc":" "},{"example":<Demo5 />,"title":" 指定状态的Step","code":"/**\n*\n* @title 指定状态的Step\n* @description  用step的status属性，指定当前step的状态\n*\n*/\nclass Demo5 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps current={1} status=\"error\">\n            <Step title=\"Finished\" description=\"This is a description\" />\n            <Step title=\"In Process\" description=\"This is a description\" />\n            <Step title=\"Waiting\" description=\"This is a description\" />\n        </Steps>\n        </div>\n      )\n  }\n}","desc":"  用step的status属性，指定当前step的状态"}]
 
 
 class Demo extends Component {

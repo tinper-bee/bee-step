@@ -1,5 +1,10 @@
 
-
+/**
+*
+* @title 结合切换事件的 Step
+* @description 点击next，Step的流程跟进
+*
+*/
 
 const steps = [{
   title: 'First',
