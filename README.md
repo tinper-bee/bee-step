@@ -50,6 +50,8 @@ render(Demo1,document.getElementById('app'));
 
 ## API
 
+## Step
+
 |Property|Description|Type|Default|
 |:---|:-----|:----|:------|
 |status|自动设置当前step的状态（wait|process|finish|error）|string|-|
