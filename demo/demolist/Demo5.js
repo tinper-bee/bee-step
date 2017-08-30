@@ -4,6 +4,12 @@
 * @description  用step的status属性，指定当前step的状态
 *
 */
+
+import React, { Component } from 'react';
+import Step from '../../src';
+
+const Steps = Step.Steps;
+
 class Demo5 extends Component {
   render () {
       return (
@@ -17,3 +23,5 @@ class Demo5 extends Component {
       )
   }
 }
+
+export default Demo5;

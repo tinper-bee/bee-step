@@ -4,6 +4,12 @@
 * @description 
 *
 */
+
+import React, { Component } from 'react';
+import Step from '../../src';
+
+const Steps = Step.Steps;
+
 class Demo4 extends Component {
   render () {
       return (
@@ -17,3 +23,5 @@ class Demo4 extends Component {
       )
   }
 }
+
+export default Demo4;

@@ -5,6 +5,13 @@
 * @description 点击next，Step的流程跟进
 *
 */
+import React, { Component } from 'react';
+import Icon from 'bee-icon';
+import Message from 'bee-message';
+import Button from 'bee-button';
+import Step from '../../src';
+
+const Steps = Step.Steps;
 
 const steps = [{
   title: 'First',
@@ -68,3 +75,5 @@ class Demo3 extends Component {
     );
   }
 }
+
+export default Demo3;
