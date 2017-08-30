@@ -5,7 +5,6 @@ import classNames from 'classnames';
 const propTypes = {
   prefixCls: PropTypes.string,
   iconPrefix: PropTypes.string,
-  direction: PropTypes.string,
   labelPlacement: PropTypes.string,
   children: PropTypes.any,
   current: PropTypes.number,
