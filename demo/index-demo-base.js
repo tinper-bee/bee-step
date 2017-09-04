@@ -34,7 +34,6 @@ class Demo extends Component {
 
         const footer = (
             <Button shape="block" onClick={ this.handleClick }>
-                { caret }
                 { text }
             </Button>
         );
@@ -44,9 +43,7 @@ class Demo extends Component {
                 { example }
                 </Col>
                 <Col md={1}>
-                <Button shape="icon" onClick={ this.handleClick }>
-                    { caret }
-                </Button>
+                
                 </Col>
             </Row>
         );
