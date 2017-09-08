@@ -1,7 +1,7 @@
 /**
 *
 * @title 常用基础 Step
-* @description current 标记当前机型哪一步
+* @description current 标记当前进行哪一步
 *
 */
 
