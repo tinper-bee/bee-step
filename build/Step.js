@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -135,19 +139,19 @@ exports["default"] = Step;
 
 
 Step.propTypes = {
-  className: _react.PropTypes.string,
-  prefixCls: _react.PropTypes.string,
-  style: _react.PropTypes.object,
-  wrapperStyle: _react.PropTypes.object,
-  tailWidth: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-  status: _react.PropTypes.string,
-  iconPrefix: _react.PropTypes.string,
-  icon: _react.PropTypes.node,
-  adjustMarginRight: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-  stepLast: _react.PropTypes.bool,
-  stepNumber: _react.PropTypes.string,
-  description: _react.PropTypes.any,
-  title: _react.PropTypes.any
+  className: _propTypes2["default"].string,
+  prefixCls: _propTypes2["default"].string,
+  style: _propTypes2["default"].object,
+  wrapperStyle: _propTypes2["default"].object,
+  tailWidth: _propTypes2["default"].oneOfType([_propTypes2["default"].number, _propTypes2["default"].string]),
+  status: _propTypes2["default"].string,
+  iconPrefix: _propTypes2["default"].string,
+  icon: _propTypes2["default"].node,
+  adjustMarginRight: _propTypes2["default"].oneOfType([_propTypes2["default"].number, _propTypes2["default"].string]),
+  stepLast: _propTypes2["default"].bool,
+  stepNumber: _propTypes2["default"].string,
+  description: _propTypes2["default"].any,
+  title: _propTypes2["default"].any
 };
 
 module.exports = Step;

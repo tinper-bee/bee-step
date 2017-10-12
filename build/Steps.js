@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
@@ -33,14 +37,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
 var propTypes = {
-  prefixCls: _react.PropTypes.string,
-  iconPrefix: _react.PropTypes.string,
-  labelPlacement: _react.PropTypes.string,
-  children: _react.PropTypes.any,
-  current: _react.PropTypes.number,
-  status: _react.PropTypes.oneOf(['wait', 'process', 'finish', 'error']),
-  direction: _react.PropTypes.oneOf(['horizontal', 'vertical']),
-  size: _react.PropTypes.oneOf(['default', 'small'])
+  prefixCls: _propTypes2["default"].string,
+  iconPrefix: _propTypes2["default"].string,
+  labelPlacement: _propTypes2["default"].string,
+  children: _propTypes2["default"].any,
+  current: _propTypes2["default"].number,
+  status: _propTypes2["default"].oneOf(['wait', 'process', 'finish', 'error']),
+  direction: _propTypes2["default"].oneOf(['horizontal', 'vertical']),
+  size: _propTypes2["default"].oneOf(['default', 'small'])
 };
 
 var defaultProps = {
