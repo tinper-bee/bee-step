@@ -1,5 +1,10 @@
+<a name="1.0.1"></a>
+## 1.0.1 (2017-11-15)
 
-|时间|说明|修复版本|
-|---|----|---|
-|2017-8-30|1.修改示例 2.加上bee-message包|0.0.4|
-|2017-9-4|例子去掉下拉按钮|0.0.5|
+
+### Bug Fixes
+
+* **bee-step:** change dependencies ([af34669](https://github.com/tinper-bee/bee-step/commit/af34669))
+
+
+
