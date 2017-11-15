@@ -6,7 +6,6 @@
 *
 */
 import React, { Component } from 'react';
-import Icon from 'bee-icon';
 import Message from 'bee-message';
 import Button from 'bee-button';
 import Step from '../../src';
