@@ -102,7 +102,7 @@
   .u-steps .uicon-cross:before {
     content: "\e76b"; }
   .u-steps .uicon:before {
-    display: block;
+    display: inline-block;
     font-family: uf !important; }
   .u-steps .uf {
     font-size: 22px; }
