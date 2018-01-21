@@ -40,7 +40,7 @@ class Demo3 extends Component {
   }
 
   alertDone() {
-    Message.create({content: 'done', color: 'info'});
+    Message.create({content: '完成', color: 'info'});
   }
 
   render() {
@@ -55,18 +55,18 @@ class Demo3 extends Component {
           {
             this.state.current < steps.length - 1
             &&
-            <Button type="primary" onClick={() => this.next()}>Next</Button>
+            <Button type="primary" onClick={() => this.next()}>下一页</Button>
           }
           {
             this.state.current === steps.length - 1
             &&
-            <Button type="primary" onClick={() => this.alertDone()}>Done</Button>
+            <Button type="primary" onClick={() => this.alertDone()}>完成</Button>
           }
           {
             this.state.current > 0
             &&
             <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
+              上一页
             </Button>
           }
         </div>

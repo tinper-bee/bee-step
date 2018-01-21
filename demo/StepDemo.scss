@@ -4,17 +4,3 @@
 @import "../node_modules/bee-layout/src/Layout.scss";
 @import "../node_modules/bee-button/src/Button.scss";
 @import "../node_modules/bee-message/src/Message.scss";
-@import "../node_modules/bee-transition/src/Transition.scss";
-.steps-content {
-  margin-top: 16px;
-  border: 1px dashed #e9e9e9;
-  border-radius: 6px;
-  background-color: #fafafa;
-  min-height: 200px;
-  text-align: center;
-  padding-top: 80px;
-}
-
-.steps-action {
-  margin-top: 24px;
-}
