@@ -103,7 +103,7 @@
     content: "\e76b"; }
   .u-steps .uicon:before {
     display: inline-block;
-    font-family: uf !important; }
+    font-family: uf; }
   .u-steps .uf {
     font-size: 22px; }
   .u-steps .u-steps-main {

@@ -80,7 +80,7 @@ class Steps extends React.Component {
             const tailWidth = (direction === 'vertical' || idx === lastIndex || !reLayouted)
               ? null : `${100 / lastIndex}%`;
             const adjustMarginRight = (direction === 'vertical' || idx === lastIndex)
-              ? null : -Math.round(this.state.lastStepOffsetWidth / lastIndex + 1);
+              ? null : (-Math.floor(this.state.lastStepOffsetWidth / lastIndex + 1)-1);
             const np = {
               stepNumber: (idx + 1).toString(),
               stepLast: idx === lastIndex,
