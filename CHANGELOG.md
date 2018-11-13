@@ -1,5 +1,15 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/tinper-bee/bee-step/compare/v1.0.3...v1.1.0) (2018-11-13)
+
+
+### Features
+
+* **bee-steps:** 升级bee-step ([7a6aa6f](https://github.com/tinper-bee/bee-step/commit/7a6aa6f))
+
+
+
 <a name="1.0.3"></a>
-## 1.0.3 (2018-11-06)
+## [1.0.3](https://github.com/tinper-bee/bee-step/compare/af34669...v1.0.3) (2018-11-06)
 
 
 ### Bug Fixes
