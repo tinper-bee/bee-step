@@ -22,9 +22,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -45,34 +45,55 @@ var Step = function (_React$Component) {
     return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
   }
 
-  Step.prototype.render = function render() {
-    var _classNames, _classNames2;
+  Step.prototype.renderIconNode = function renderIconNode() {
+    var _classNames;
 
     var _props = this.props,
-        className = _props.className,
         prefixCls = _props.prefixCls,
-        style = _props.style,
-        tailWidth = _props.tailWidth,
-        _props$status = _props.status,
-        status = _props$status === undefined ? 'wait' : _props$status,
-        iconPrefix = _props.iconPrefix,
-        icon = _props.icon,
-        wrapperStyle = _props.wrapperStyle,
-        adjustMarginRight = _props.adjustMarginRight,
-        stepLast = _props.stepLast,
+        progressDot = _props.progressDot,
         stepNumber = _props.stepNumber,
-        description = _props.description,
+        status = _props.status,
         title = _props.title,
-        restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
-
-    var iconClassName = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
+        description = _props.description,
+        icon = _props.icon,
+        iconPrefix = _props.iconPrefix,
+        icons = _props.icons;
 
     var iconNode = void 0;
-    if (icon && !isString(icon)) {
+    var iconClassName = (0, _classnames2["default"])(prefixCls + '-icon', iconPrefix + 'icon', (_classNames = {}, _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish' && icons && !icons.finish), _defineProperty(_classNames, iconPrefix + 'icon-close', !icon && status === 'error' && icons && !icons.error), _classNames));
+    var iconDot = _react2["default"].createElement('span', { className: prefixCls + '-icon-dot' });
+    // `progressDot` enjoy the highest priority
+    if (progressDot) {
+      if (typeof progressDot === 'function') {
+        iconNode = _react2["default"].createElement(
+          'span',
+          { className: prefixCls + '-icon' },
+          progressDot(iconDot, { index: stepNumber - 1, status: status, title: title, description: description })
+        );
+      } else {
+        iconNode = _react2["default"].createElement(
+          'span',
+          { className: prefixCls + '-icon' },
+          iconDot
+        );
+      }
+    } else if (icon && !isString(icon)) {
       iconNode = _react2["default"].createElement(
         'span',
         { className: prefixCls + '-icon' },
         icon
+      );
+    } else if (icons && icons.finish && status === 'finish') {
+      iconNode = _react2["default"].createElement(
+        'span',
+        { className: prefixCls + '-icon' },
+        icons.finish
+      );
+    } else if (icons && icons.error && status === 'error') {
+      iconNode = _react2["default"].createElement(
+        'span',
+        { className: prefixCls + '-icon' },
+        icons.error
       );
     } else if (icon || status === 'finish' || status === 'error') {
       iconNode = _react2["default"].createElement('span', { className: iconClassName });
@@ -84,49 +105,65 @@ var Step = function (_React$Component) {
       );
     }
 
-    var classString = (0, _classnames2["default"])((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
+    return iconNode;
+  };
+
+  Step.prototype.render = function render() {
+    var _props2 = this.props,
+        className = _props2.className,
+        prefixCls = _props2.prefixCls,
+        style = _props2.style,
+        itemWidth = _props2.itemWidth,
+        _props2$status = _props2.status,
+        status = _props2$status === undefined ? 'wait' : _props2$status,
+        iconPrefix = _props2.iconPrefix,
+        icon = _props2.icon,
+        wrapperStyle = _props2.wrapperStyle,
+        adjustMarginRight = _props2.adjustMarginRight,
+        stepNumber = _props2.stepNumber,
+        description = _props2.description,
+        title = _props2.title,
+        progressDot = _props2.progressDot,
+        tailContent = _props2.tailContent,
+        icons = _props2.icons,
+        restProps = _objectWithoutProperties(_props2, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepNumber', 'description', 'title', 'progressDot', 'tailContent', 'icons']);
+
+    var classString = (0, _classnames2["default"])(prefixCls + '-item', prefixCls + '-item-' + status, className, _defineProperty({}, prefixCls + '-item-custom', icon));
+    var stepItemStyle = _extends({}, style);
+    if (itemWidth) {
+      stepItemStyle.width = itemWidth;
+    }
+    if (adjustMarginRight) {
+      stepItemStyle.marginRight = adjustMarginRight;
+    }
     return _react2["default"].createElement(
       'div',
       _extends({}, restProps, {
         className: classString,
-        style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
+        style: stepItemStyle
       }),
-      stepLast ? '' : _react2["default"].createElement(
+      _react2["default"].createElement(
         'div',
-        { ref: 'tail', className: prefixCls + '-tail' },
-        _react2["default"].createElement('i', null)
+        { className: prefixCls + '-item-tail' },
+        tailContent
       ),
       _react2["default"].createElement(
         'div',
-        { className: prefixCls + '-step' },
+        { className: prefixCls + '-item-icon' },
+        this.renderIconNode()
+      ),
+      _react2["default"].createElement(
+        'div',
+        { className: prefixCls + '-item-content' },
         _react2["default"].createElement(
           'div',
-          {
-            className: prefixCls + '-head',
-            style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
-          },
-          _react2["default"].createElement(
-            'div',
-            { className: prefixCls + '-head-inner' },
-            iconNode
-          )
+          { className: prefixCls + '-item-title' },
+          title
         ),
-        _react2["default"].createElement(
+        description && _react2["default"].createElement(
           'div',
-          { ref: 'main', className: prefixCls + '-main' },
-          _react2["default"].createElement(
-            'div',
-            {
-              className: prefixCls + '-title',
-              style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
-            },
-            title
-          ),
-          description ? _react2["default"].createElement(
-            'div',
-            { className: prefixCls + '-description' },
-            description
-          ) : ''
+          { className: prefixCls + '-item-description' },
+          description
         )
       )
     );
@@ -135,24 +172,26 @@ var Step = function (_React$Component) {
   return Step;
 }(_react2["default"].Component);
 
-exports["default"] = Step;
-
-
 Step.propTypes = {
   className: _propTypes2["default"].string,
   prefixCls: _propTypes2["default"].string,
   style: _propTypes2["default"].object,
   wrapperStyle: _propTypes2["default"].object,
-  tailWidth: _propTypes2["default"].oneOfType([_propTypes2["default"].number, _propTypes2["default"].string]),
+  itemWidth: _propTypes2["default"].oneOfType([_propTypes2["default"].number, _propTypes2["default"].string]),
   status: _propTypes2["default"].string,
   iconPrefix: _propTypes2["default"].string,
   icon: _propTypes2["default"].node,
   adjustMarginRight: _propTypes2["default"].oneOfType([_propTypes2["default"].number, _propTypes2["default"].string]),
-  stepLast: _propTypes2["default"].bool,
   stepNumber: _propTypes2["default"].string,
   description: _propTypes2["default"].any,
-  title: _propTypes2["default"].any
+  title: _propTypes2["default"].any,
+  progressDot: _propTypes2["default"].oneOfType([_propTypes2["default"].bool, _propTypes2["default"].func]),
+  tailContent: _propTypes2["default"].any,
+  icons: _propTypes2["default"].shape({
+    finish: _propTypes2["default"].node,
+    error: _propTypes2["default"].node
+  })
 };
 
-module.exports = Step;
+exports["default"] = Step;
 module.exports = exports['default'];

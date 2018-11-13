@@ -16,11 +16,15 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactDom = require('react-dom');
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _lodash = require('lodash.debounce');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _utils = require('./utils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -36,15 +40,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
-var propTypes = {
-  prefixCls: _propTypes2["default"].string,
+var propTypes = { prefixCls: _propTypes2["default"].string,
+  className: _propTypes2["default"].string,
   iconPrefix: _propTypes2["default"].string,
+  direction: _propTypes2["default"].string,
   labelPlacement: _propTypes2["default"].string,
   children: _propTypes2["default"].any,
+  status: _propTypes2["default"].string,
+  size: _propTypes2["default"].string,
+  progressDot: _propTypes2["default"].oneOfType([_propTypes2["default"].bool, _propTypes2["default"].func]),
+  style: _propTypes2["default"].object,
+  initial: _propTypes2["default"].number,
   current: _propTypes2["default"].number,
-  status: _propTypes2["default"].oneOf(['wait', 'process', 'finish', 'error']),
-  direction: _propTypes2["default"].oneOf(['horizontal', 'vertical']),
-  size: _propTypes2["default"].oneOf(['default', 'small'])
+  icons: _propTypes2["default"].shape({
+    finish: _propTypes2["default"].node,
+    error: _propTypes2["default"].node
+  })
 };
 
 var defaultProps = {
@@ -53,8 +64,10 @@ var defaultProps = {
   direction: 'horizontal',
   labelPlacement: 'horizontal',
   current: 0,
+  initial: 0,
   status: 'process',
-  size: 'default'
+  size: 'default',
+  progressDot: false
 };
 
 var Steps = function (_React$Component) {
@@ -65,8 +78,12 @@ var Steps = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.calcLastStepOffsetWidth = function () {
-      var domNode = _reactDom2["default"].findDOMNode(_this);
+    _this.calcStepOffsetWidth = function () {
+      if ((0, _utils.isFlexSupported)()) {
+        return;
+      }
+      // Just for IE9
+      var domNode = (0, _reactDom.findDOMNode)(_this);
       if (domNode.children.length > 0) {
         if (_this.calcTimeout) {
           clearTimeout(_this.calcTimeout);
@@ -74,7 +91,8 @@ var Steps = function (_React$Component) {
         _this.calcTimeout = setTimeout(function () {
           // +1 for fit edge bug of digit width, like 35.4px
           var lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
-          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
+          // Reduce shake bug
+          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth || Math.abs(_this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
             return;
           }
           _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth });
@@ -83,80 +101,101 @@ var Steps = function (_React$Component) {
     };
 
     _this.state = {
+      flexSupported: true,
       lastStepOffsetWidth: 0
     };
+    _this.calcStepOffsetWidth = (0, _lodash2["default"])(_this.calcStepOffsetWidth, 150);
     return _this;
   }
 
   Steps.prototype.componentDidMount = function componentDidMount() {
-    this.calcLastStepOffsetWidth();
+    this.calcStepOffsetWidth();
+    if (!(0, _utils.isFlexSupported)()) {
+      this.setState({
+        flexSupported: false
+      });
+    }
   };
 
   Steps.prototype.componentDidUpdate = function componentDidUpdate() {
-    this.calcLastStepOffsetWidth();
+    this.calcStepOffsetWidth();
   };
 
   Steps.prototype.componentWillUnmount = function componentWillUnmount() {
     if (this.calcTimeout) {
       clearTimeout(this.calcTimeout);
     }
+    if (this.calcStepOffsetWidth && this.calcStepOffsetWidth.cancel) {
+      this.calcStepOffsetWidth.cancel();
+    }
   };
 
   Steps.prototype.render = function render() {
-    var _classNames,
-        _this2 = this;
+    var _classNames;
 
-    var props = this.props;
-
-    var prefixCls = props.prefixCls,
-        _props$style = props.style,
+    var _props = this.props,
+        prefixCls = _props.prefixCls,
+        _props$style = _props.style,
         style = _props$style === undefined ? {} : _props$style,
-        className = props.className,
-        children = props.children,
-        direction = props.direction,
-        labelPlacement = props.labelPlacement,
-        iconPrefix = props.iconPrefix,
-        status = props.status,
-        size = props.size,
-        current = props.current,
-        restProps = _objectWithoutProperties(props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current']);
+        className = _props.className,
+        children = _props.children,
+        direction = _props.direction,
+        labelPlacement = _props.labelPlacement,
+        iconPrefix = _props.iconPrefix,
+        status = _props.status,
+        size = _props.size,
+        current = _props.current,
+        progressDot = _props.progressDot,
+        initial = _props.initial,
+        icons = _props.icons,
+        restProps = _objectWithoutProperties(_props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current', 'progressDot', 'initial', 'icons']);
 
-    var lastIndex = children.length - 1;
-    var reLayouted = this.state.lastStepOffsetWidth > 0;
-    var classString = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', !reLayouted), _defineProperty(_classNames, className, className), _classNames));
+    var _state = this.state,
+        lastStepOffsetWidth = _state.lastStepOffsetWidth,
+        flexSupported = _state.flexSupported;
+
+    var filteredChildren = _react2["default"].Children.toArray(children).filter(function (c) {
+      return !!c;
+    });
+    var lastIndex = filteredChildren.length - 1;
+    var adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
+    var classString = (0, _classnames2["default"])(prefixCls, prefixCls + '-' + direction, className, (_classNames = {}, _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-label-' + adjustedlabelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-dot', !!progressDot), _classNames));
 
     return _react2["default"].createElement(
       'div',
       _extends({ className: classString, style: style }, restProps),
-      _react2["default"].Children.map(children, function (ele, idx) {
-        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
-        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.floor(_this2.state.lastStepOffsetWidth / lastIndex + 1) - 1;
-        var np = {
-          stepNumber: (idx + 1).toString(),
-          stepLast: idx === lastIndex,
-          tailWidth: tailWidth,
-          adjustMarginRight: adjustMarginRight,
+      _react.Children.map(filteredChildren, function (child, index) {
+        if (!child) {
+          return null;
+        }
+        var stepNumber = initial + index;
+        var childProps = _extends({
+          stepNumber: '' + (stepNumber + 1),
           prefixCls: prefixCls,
           iconPrefix: iconPrefix,
-          wrapperStyle: style
-        };
-
-        // fix tail color
-        if (status === 'error' && idx === current - 1) {
-          np.className = props.prefixCls + '-next-error';
+          wrapperStyle: style,
+          progressDot: progressDot,
+          icons: icons
+        }, child.props);
+        if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
+          childProps.itemWidth = 100 / lastIndex + '%';
+          childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
         }
-
-        if (!ele.props.status) {
-          if (idx === current) {
-            np.status = status;
-          } else if (idx < current) {
-            np.status = 'finish';
+        // fix tail color
+        if (status === 'error' && index === current - 1) {
+          childProps.className = prefixCls + '-next-error';
+        }
+        if (!child.props.status) {
+          if (stepNumber === current) {
+            childProps.status = status;
+          } else if (stepNumber < current) {
+            childProps.status = 'finish';
           } else {
-            np.status = 'wait';
+            childProps.status = 'wait';
           }
         }
-        return _react2["default"].cloneElement(ele, np);
-      }, this)
+        return (0, _react.cloneElement)(child, childProps);
+      })
     );
   };
 

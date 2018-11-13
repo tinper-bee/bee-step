@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(80);var Demo2 = __webpack_require__(84);var Demo3 = __webpack_require__(87);var Demo4 = __webpack_require__(88);var Demo5 = __webpack_require__(89);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 常用基础 Step", "code": "/**\n*\n* @title 常用基础 Step\n* @description current 标记当前进行哪一步\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nclass Demo1 extends Component {\n  render () {\n      return (\n          <Step.Steps current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n          </Step.Steps>\n      )\n  }\n}\n\n\n", "desc": " current 标记当前进行哪一步" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 自定义icon Step", "code": "/**\n*\n* @title 自定义icon Step\n* @description\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step, Icon } from 'tinper-bee';\n\nclass Demo2 extends Component {\n  render () {\n      return (\n        <Step.Steps>\n          <Step status=\"finish\" title=\"Login\" icon={<Icon type=\"uf-users-o\" />} />\n          <Step status=\"finish\" title=\"Verification\" icon={<Icon type=\"uf-personin-o\" />} />\n          <Step status=\"process\" title=\"Pay\" icon={<Icon type=\"uf-creditcard\" />} />\n          <Step status=\"wait\" title=\"Done\" icon={<Icon type=\"uf-correct-2\" />} />\n        </Step.Steps>\n      )\n  }\n}\n\n", "desc": "" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 结合切换事件的 Step", "code": "\n/**\n*\n* @title 结合切换事件的 Step\n* @description 点击next，Step的流程跟进\n*\n*/\nimport React, { Component } from 'react';\nimport { Step, Button, Message } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nconst steps = [{\n  title: 'First',\n  content: 'First-content',\n}, {\n  title: 'Second',\n  content: 'Second-content',\n}, {\n  title: 'Last',\n  content: 'Last-content',\n}];\n\nclass Demo3 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      current: 0,\n    };\n  }\n  next() {\n    const current = this.state.current + 1;\n    this.setState({ current });\n  }\n  prev() {\n    const current = this.state.current - 1;\n    this.setState({ current });\n  }\n\n  alertDone() {\n    Message.create({content: '完成', color: 'info'});\n  }\n\n  render() {\n    const { current } = this.state;\n    return (\n      <div>\n        <Steps current={current}>\n          {steps.map(item => <Step key={item.title} title={item.title} />)}\n        </Steps>\n        <div className=\"steps-content\">{steps[this.state.current].content}</div>\n        <div className=\"steps-action\">\n          {\n            this.state.current < steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.next()}>下一页</Button>\n          }\n          {\n            this.state.current === steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.alertDone()}>完成</Button>\n          }\n          {\n            this.state.current > 0\n            &&\n            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>\n              上一页\n            </Button>\n          }\n        </div>\n      </div>\n    );\n  }\n}\n\n", "desc": " 点击next，Step的流程跟进", "scss_code": ".steps-content {\n  margin-top: 16px;\n  border: 1px dashed #e9e9e9;\n  border-radius: 6px;\n  background-color: #fafafa;\n  min-height: 200px;\n  text-align: center;\n  padding-top: 80px;\n}\n\n.steps-action {\n  margin-top: 24px;\n}" }, { "example": _react2['default'].createElement(Demo4, null), "title": " vertical Step", "code": "/**\n*\n* @title vertical Step\n* @description \n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nclass Demo4 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps direction=\"vertical\" size=\"small\" current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n         </Steps>\n        </div>\n      )\n  }\n}\n\n", "desc": " " }, { "example": _react2['default'].createElement(Demo5, null), "title": " 指定状态的Step", "code": "/**\n*\n* @title 指定状态的Step\n* @description  用step的status属性，指定当前step的状态\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nclass Demo5 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps current={1} status=\"error\">\n            <Step title=\"Finished\" description=\"This is a description\" />\n            <Step title=\"In Process\" description=\"This is a description\" />\n            <Step title=\"Waiting\" description=\"This is a description\" />\n        </Steps>\n        </div>\n      )\n  }\n}\n\n", "desc": "  用step的status属性，指定当前step的状态" }];
+	var Demo1 = __webpack_require__(80);var Demo2 = __webpack_require__(86);var Demo3 = __webpack_require__(89);var Demo4 = __webpack_require__(90);var Demo5 = __webpack_require__(91);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 常用基础 Step", "code": "/**\n*\n* @title 常用基础 Step\n* @description current 标记当前进行哪一步\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nclass Demo1 extends Component {\n  render () {\n      return (\n          <Step.Steps current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n          </Step.Steps>\n      )\n  }\n}\n\n\n", "desc": " current 标记当前进行哪一步" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 自定义icon Step", "code": "/**\n*\n* @title 自定义icon Step\n* @description\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step, Icon } from 'tinper-bee';\n\nclass Demo2 extends Component {\n  render () {\n      return (\n        <Step.Steps>\n          <Step status=\"finish\" title=\"Login\" icon={<Icon type=\"uf-users-o\" />} />\n          <Step status=\"finish\" title=\"Verification\" icon={<Icon type=\"uf-personin-o\" />} />\n          <Step status=\"process\" title=\"Pay\" icon={<Icon type=\"uf-creditcard\" />} />\n          <Step status=\"wait\" title=\"Done\" icon={<Icon type=\"uf-correct-2\" />} />\n        </Step.Steps>\n      )\n  }\n}\n\n", "desc": "" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 结合切换事件的 Step", "code": "\n/**\n*\n* @title 结合切换事件的 Step\n* @description 点击next，Step的流程跟进\n*\n*/\nimport React, { Component } from 'react';\nimport { Step, Button, Message } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nconst steps = [{\n  title: 'First',\n  content: 'First-content',\n}, {\n  title: 'Second',\n  content: 'Second-content',\n}, {\n  title: 'Last',\n  content: 'Last-content',\n}];\n\nclass Demo3 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      current: 0,\n    };\n  }\n  next() {\n    const current = this.state.current + 1;\n    this.setState({ current });\n  }\n  prev() {\n    const current = this.state.current - 1;\n    this.setState({ current });\n  }\n\n  alertDone() {\n    Message.create({content: '完成', color: 'info'});\n  }\n\n  render() {\n    const { current } = this.state;\n    return (\n      <div>\n        <Steps current={current}>\n          {steps.map(item => <Step key={item.title} title={item.title} />)}\n        </Steps>\n        <div className=\"steps-content\">{steps[this.state.current].content}</div>\n        <div className=\"steps-action\">\n          {\n            this.state.current < steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.next()}>下一页</Button>\n          }\n          {\n            this.state.current === steps.length - 1\n            &&\n            <Button type=\"primary\" onClick={() => this.alertDone()}>完成</Button>\n          }\n          {\n            this.state.current > 0\n            &&\n            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>\n              上一页\n            </Button>\n          }\n        </div>\n      </div>\n    );\n  }\n}\n\n", "desc": " 点击next，Step的流程跟进", "scss_code": ".steps-content {\n  margin-top: 16px;\n  border: 1px dashed #e9e9e9;\n  border-radius: 6px;\n  background-color: #fafafa;\n  min-height: 200px;\n  text-align: center;\n  padding-top: 80px;\n}\n\n.steps-action {\n  margin-top: 24px;\n}" }, { "example": _react2['default'].createElement(Demo4, null), "title": " vertical Step", "code": "/**\n*\n* @title vertical Step\n* @description \n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nclass Demo4 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps direction=\"vertical\" size=\"small\" current={1}>\n            <Step title=\"Finished\" description=\"This is a description.\" />\n            <Step title=\"In Progress\" description=\"This is a description.\" />\n            <Step title=\"Waiting\" description=\"This is a description.\" />\n         </Steps>\n        </div>\n      )\n  }\n}\n\n", "desc": " " }, { "example": _react2['default'].createElement(Demo5, null), "title": " 指定状态的Step", "code": "/**\n*\n* @title 指定状态的Step\n* @description  用step的status属性，指定当前step的状态\n*\n*/\n\nimport React, { Component } from 'react';\nimport { Step } from 'tinper-bee';\n\nconst Steps = Step.Steps;\n\nclass Demo5 extends Component {\n  render () {\n      return (\n        <div>\n          <Steps current={1} status=\"error\">\n            <Step title=\"Finished\" description=\"This is a description\" />\n            <Step title=\"In Process\" description=\"This is a description\" />\n            <Step title=\"Waiting\" description=\"This is a description\" />\n        </Steps>\n        </div>\n      )\n  }\n}\n\n", "desc": "  用step的status属性，指定当前step的状态" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -7882,9 +7882,9 @@
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7905,34 +7905,55 @@
 	    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
 	  }
 	
-	  Step.prototype.render = function render() {
-	    var _classNames, _classNames2;
+	  Step.prototype.renderIconNode = function renderIconNode() {
+	    var _classNames;
 	
 	    var _props = this.props,
-	        className = _props.className,
 	        prefixCls = _props.prefixCls,
-	        style = _props.style,
-	        tailWidth = _props.tailWidth,
-	        _props$status = _props.status,
-	        status = _props$status === undefined ? 'wait' : _props$status,
-	        iconPrefix = _props.iconPrefix,
-	        icon = _props.icon,
-	        wrapperStyle = _props.wrapperStyle,
-	        adjustMarginRight = _props.adjustMarginRight,
-	        stepLast = _props.stepLast,
+	        progressDot = _props.progressDot,
 	        stepNumber = _props.stepNumber,
-	        description = _props.description,
+	        status = _props.status,
 	        title = _props.title,
-	        restProps = _objectWithoutProperties(_props, ['className', 'prefixCls', 'style', 'tailWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepLast', 'stepNumber', 'description', 'title']);
-	
-	    var iconClassName = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-icon', true), _defineProperty(_classNames, iconPrefix + 'icon', true), _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish'), _defineProperty(_classNames, iconPrefix + 'icon-cross', !icon && status === 'error'), _classNames));
+	        description = _props.description,
+	        icon = _props.icon,
+	        iconPrefix = _props.iconPrefix,
+	        icons = _props.icons;
 	
 	    var iconNode = void 0;
-	    if (icon && !isString(icon)) {
+	    var iconClassName = (0, _classnames2['default'])(prefixCls + '-icon', iconPrefix + 'icon', (_classNames = {}, _defineProperty(_classNames, iconPrefix + 'icon-' + icon, icon && isString(icon)), _defineProperty(_classNames, iconPrefix + 'icon-check', !icon && status === 'finish' && icons && !icons.finish), _defineProperty(_classNames, iconPrefix + 'icon-close', !icon && status === 'error' && icons && !icons.error), _classNames));
+	    var iconDot = _react2['default'].createElement('span', { className: prefixCls + '-icon-dot' });
+	    // `progressDot` enjoy the highest priority
+	    if (progressDot) {
+	      if (typeof progressDot === 'function') {
+	        iconNode = _react2['default'].createElement(
+	          'span',
+	          { className: prefixCls + '-icon' },
+	          progressDot(iconDot, { index: stepNumber - 1, status: status, title: title, description: description })
+	        );
+	      } else {
+	        iconNode = _react2['default'].createElement(
+	          'span',
+	          { className: prefixCls + '-icon' },
+	          iconDot
+	        );
+	      }
+	    } else if (icon && !isString(icon)) {
 	      iconNode = _react2['default'].createElement(
 	        'span',
 	        { className: prefixCls + '-icon' },
 	        icon
+	      );
+	    } else if (icons && icons.finish && status === 'finish') {
+	      iconNode = _react2['default'].createElement(
+	        'span',
+	        { className: prefixCls + '-icon' },
+	        icons.finish
+	      );
+	    } else if (icons && icons.error && status === 'error') {
+	      iconNode = _react2['default'].createElement(
+	        'span',
+	        { className: prefixCls + '-icon' },
+	        icons.error
 	      );
 	    } else if (icon || status === 'finish' || status === 'error') {
 	      iconNode = _react2['default'].createElement('span', { className: iconClassName });
@@ -7944,49 +7965,65 @@
 	      );
 	    }
 	
-	    var classString = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, prefixCls + '-item', true), _defineProperty(_classNames2, prefixCls + '-item-last', stepLast), _defineProperty(_classNames2, prefixCls + '-status-' + status, true), _defineProperty(_classNames2, prefixCls + '-custom', icon), _defineProperty(_classNames2, className, !!className), _classNames2));
+	    return iconNode;
+	  };
+	
+	  Step.prototype.render = function render() {
+	    var _props2 = this.props,
+	        className = _props2.className,
+	        prefixCls = _props2.prefixCls,
+	        style = _props2.style,
+	        itemWidth = _props2.itemWidth,
+	        _props2$status = _props2.status,
+	        status = _props2$status === undefined ? 'wait' : _props2$status,
+	        iconPrefix = _props2.iconPrefix,
+	        icon = _props2.icon,
+	        wrapperStyle = _props2.wrapperStyle,
+	        adjustMarginRight = _props2.adjustMarginRight,
+	        stepNumber = _props2.stepNumber,
+	        description = _props2.description,
+	        title = _props2.title,
+	        progressDot = _props2.progressDot,
+	        tailContent = _props2.tailContent,
+	        icons = _props2.icons,
+	        restProps = _objectWithoutProperties(_props2, ['className', 'prefixCls', 'style', 'itemWidth', 'status', 'iconPrefix', 'icon', 'wrapperStyle', 'adjustMarginRight', 'stepNumber', 'description', 'title', 'progressDot', 'tailContent', 'icons']);
+	
+	    var classString = (0, _classnames2['default'])(prefixCls + '-item', prefixCls + '-item-' + status, className, _defineProperty({}, prefixCls + '-item-custom', icon));
+	    var stepItemStyle = _extends({}, style);
+	    if (itemWidth) {
+	      stepItemStyle.width = itemWidth;
+	    }
+	    if (adjustMarginRight) {
+	      stepItemStyle.marginRight = adjustMarginRight;
+	    }
 	    return _react2['default'].createElement(
 	      'div',
 	      _extends({}, restProps, {
 	        className: classString,
-	        style: _extends({ width: tailWidth, marginRight: adjustMarginRight }, style)
+	        style: stepItemStyle
 	      }),
-	      stepLast ? '' : _react2['default'].createElement(
+	      _react2['default'].createElement(
 	        'div',
-	        { ref: 'tail', className: prefixCls + '-tail' },
-	        _react2['default'].createElement('i', null)
+	        { className: prefixCls + '-item-tail' },
+	        tailContent
 	      ),
 	      _react2['default'].createElement(
 	        'div',
-	        { className: prefixCls + '-step' },
+	        { className: prefixCls + '-item-icon' },
+	        this.renderIconNode()
+	      ),
+	      _react2['default'].createElement(
+	        'div',
+	        { className: prefixCls + '-item-content' },
 	        _react2['default'].createElement(
 	          'div',
-	          {
-	            className: prefixCls + '-head',
-	            style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
-	          },
-	          _react2['default'].createElement(
-	            'div',
-	            { className: prefixCls + '-head-inner' },
-	            iconNode
-	          )
+	          { className: prefixCls + '-item-title' },
+	          title
 	        ),
-	        _react2['default'].createElement(
+	        description && _react2['default'].createElement(
 	          'div',
-	          { ref: 'main', className: prefixCls + '-main' },
-	          _react2['default'].createElement(
-	            'div',
-	            {
-	              className: prefixCls + '-title',
-	              style: { background: wrapperStyle.background || wrapperStyle.backgroundColor }
-	            },
-	            title
-	          ),
-	          description ? _react2['default'].createElement(
-	            'div',
-	            { className: prefixCls + '-description' },
-	            description
-	          ) : ''
+	          { className: prefixCls + '-item-description' },
+	          description
 	        )
 	      )
 	    );
@@ -7995,26 +8032,28 @@
 	  return Step;
 	}(_react2['default'].Component);
 	
-	exports['default'] = Step;
-	
-	
 	Step.propTypes = {
 	  className: _propTypes2['default'].string,
 	  prefixCls: _propTypes2['default'].string,
 	  style: _propTypes2['default'].object,
 	  wrapperStyle: _propTypes2['default'].object,
-	  tailWidth: _propTypes2['default'].oneOfType([_propTypes2['default'].number, _propTypes2['default'].string]),
+	  itemWidth: _propTypes2['default'].oneOfType([_propTypes2['default'].number, _propTypes2['default'].string]),
 	  status: _propTypes2['default'].string,
 	  iconPrefix: _propTypes2['default'].string,
 	  icon: _propTypes2['default'].node,
 	  adjustMarginRight: _propTypes2['default'].oneOfType([_propTypes2['default'].number, _propTypes2['default'].string]),
-	  stepLast: _propTypes2['default'].bool,
 	  stepNumber: _propTypes2['default'].string,
 	  description: _propTypes2['default'].any,
-	  title: _propTypes2['default'].any
+	  title: _propTypes2['default'].any,
+	  progressDot: _propTypes2['default'].oneOfType([_propTypes2['default'].bool, _propTypes2['default'].func]),
+	  tailContent: _propTypes2['default'].any,
+	  icons: _propTypes2['default'].shape({
+	    finish: _propTypes2['default'].node,
+	    error: _propTypes2['default'].node
+	  })
 	};
 	
-	module.exports = Step;
+	exports['default'] = Step;
 	module.exports = exports['default'];
 
 /***/ }),
@@ -8039,11 +8078,15 @@
 	
 	var _reactDom = __webpack_require__(12);
 	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
 	var _classnames = __webpack_require__(3);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _lodash = __webpack_require__(84);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _utils = __webpack_require__(85);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -8059,15 +8102,22 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
-	var propTypes = {
-	  prefixCls: _propTypes2['default'].string,
+	var propTypes = { prefixCls: _propTypes2['default'].string,
+	  className: _propTypes2['default'].string,
 	  iconPrefix: _propTypes2['default'].string,
+	  direction: _propTypes2['default'].string,
 	  labelPlacement: _propTypes2['default'].string,
 	  children: _propTypes2['default'].any,
+	  status: _propTypes2['default'].string,
+	  size: _propTypes2['default'].string,
+	  progressDot: _propTypes2['default'].oneOfType([_propTypes2['default'].bool, _propTypes2['default'].func]),
+	  style: _propTypes2['default'].object,
+	  initial: _propTypes2['default'].number,
 	  current: _propTypes2['default'].number,
-	  status: _propTypes2['default'].oneOf(['wait', 'process', 'finish', 'error']),
-	  direction: _propTypes2['default'].oneOf(['horizontal', 'vertical']),
-	  size: _propTypes2['default'].oneOf(['default', 'small'])
+	  icons: _propTypes2['default'].shape({
+	    finish: _propTypes2['default'].node,
+	    error: _propTypes2['default'].node
+	  })
 	};
 	
 	var defaultProps = {
@@ -8076,8 +8126,10 @@
 	  direction: 'horizontal',
 	  labelPlacement: 'horizontal',
 	  current: 0,
+	  initial: 0,
 	  status: 'process',
-	  size: 'default'
+	  size: 'default',
+	  progressDot: false
 	};
 	
 	var Steps = function (_React$Component) {
@@ -8088,8 +8140,12 @@
 	
 	    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 	
-	    _this.calcLastStepOffsetWidth = function () {
-	      var domNode = _reactDom2['default'].findDOMNode(_this);
+	    _this.calcStepOffsetWidth = function () {
+	      if ((0, _utils.isFlexSupported)()) {
+	        return;
+	      }
+	      // Just for IE9
+	      var domNode = (0, _reactDom.findDOMNode)(_this);
 	      if (domNode.children.length > 0) {
 	        if (_this.calcTimeout) {
 	          clearTimeout(_this.calcTimeout);
@@ -8097,7 +8153,8 @@
 	        _this.calcTimeout = setTimeout(function () {
 	          // +1 for fit edge bug of digit width, like 35.4px
 	          var lastStepOffsetWidth = (domNode.lastChild.offsetWidth || 0) + 1;
-	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth) {
+	          // Reduce shake bug
+	          if (_this.state.lastStepOffsetWidth === lastStepOffsetWidth || Math.abs(_this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
 	            return;
 	          }
 	          _this.setState({ lastStepOffsetWidth: lastStepOffsetWidth });
@@ -8106,80 +8163,101 @@
 	    };
 	
 	    _this.state = {
+	      flexSupported: true,
 	      lastStepOffsetWidth: 0
 	    };
+	    _this.calcStepOffsetWidth = (0, _lodash2['default'])(_this.calcStepOffsetWidth, 150);
 	    return _this;
 	  }
 	
 	  Steps.prototype.componentDidMount = function componentDidMount() {
-	    this.calcLastStepOffsetWidth();
+	    this.calcStepOffsetWidth();
+	    if (!(0, _utils.isFlexSupported)()) {
+	      this.setState({
+	        flexSupported: false
+	      });
+	    }
 	  };
 	
 	  Steps.prototype.componentDidUpdate = function componentDidUpdate() {
-	    this.calcLastStepOffsetWidth();
+	    this.calcStepOffsetWidth();
 	  };
 	
 	  Steps.prototype.componentWillUnmount = function componentWillUnmount() {
 	    if (this.calcTimeout) {
 	      clearTimeout(this.calcTimeout);
 	    }
+	    if (this.calcStepOffsetWidth && this.calcStepOffsetWidth.cancel) {
+	      this.calcStepOffsetWidth.cancel();
+	    }
 	  };
 	
 	  Steps.prototype.render = function render() {
-	    var _classNames,
-	        _this2 = this;
+	    var _classNames;
 	
-	    var props = this.props;
-	
-	    var prefixCls = props.prefixCls,
-	        _props$style = props.style,
+	    var _props = this.props,
+	        prefixCls = _props.prefixCls,
+	        _props$style = _props.style,
 	        style = _props$style === undefined ? {} : _props$style,
-	        className = props.className,
-	        children = props.children,
-	        direction = props.direction,
-	        labelPlacement = props.labelPlacement,
-	        iconPrefix = props.iconPrefix,
-	        status = props.status,
-	        size = props.size,
-	        current = props.current,
-	        restProps = _objectWithoutProperties(props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current']);
+	        className = _props.className,
+	        children = _props.children,
+	        direction = _props.direction,
+	        labelPlacement = _props.labelPlacement,
+	        iconPrefix = _props.iconPrefix,
+	        status = _props.status,
+	        size = _props.size,
+	        current = _props.current,
+	        progressDot = _props.progressDot,
+	        initial = _props.initial,
+	        icons = _props.icons,
+	        restProps = _objectWithoutProperties(_props, ['prefixCls', 'style', 'className', 'children', 'direction', 'labelPlacement', 'iconPrefix', 'status', 'size', 'current', 'progressDot', 'initial', 'icons']);
 	
-	    var lastIndex = children.length - 1;
-	    var reLayouted = this.state.lastStepOffsetWidth > 0;
-	    var classString = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-' + direction, true), _defineProperty(_classNames, prefixCls + '-label-' + labelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-hidden', !reLayouted), _defineProperty(_classNames, className, className), _classNames));
+	    var _state = this.state,
+	        lastStepOffsetWidth = _state.lastStepOffsetWidth,
+	        flexSupported = _state.flexSupported;
+	
+	    var filteredChildren = _react2['default'].Children.toArray(children).filter(function (c) {
+	      return !!c;
+	    });
+	    var lastIndex = filteredChildren.length - 1;
+	    var adjustedlabelPlacement = !!progressDot ? 'vertical' : labelPlacement;
+	    var classString = (0, _classnames2['default'])(prefixCls, prefixCls + '-' + direction, className, (_classNames = {}, _defineProperty(_classNames, prefixCls + '-' + size, size), _defineProperty(_classNames, prefixCls + '-label-' + adjustedlabelPlacement, direction === 'horizontal'), _defineProperty(_classNames, prefixCls + '-dot', !!progressDot), _classNames));
 	
 	    return _react2['default'].createElement(
 	      'div',
 	      _extends({ className: classString, style: style }, restProps),
-	      _react2['default'].Children.map(children, function (ele, idx) {
-	        var tailWidth = direction === 'vertical' || idx === lastIndex || !reLayouted ? null : 100 / lastIndex + '%';
-	        var adjustMarginRight = direction === 'vertical' || idx === lastIndex ? null : -Math.floor(_this2.state.lastStepOffsetWidth / lastIndex + 1) - 1;
-	        var np = {
-	          stepNumber: (idx + 1).toString(),
-	          stepLast: idx === lastIndex,
-	          tailWidth: tailWidth,
-	          adjustMarginRight: adjustMarginRight,
+	      _react.Children.map(filteredChildren, function (child, index) {
+	        if (!child) {
+	          return null;
+	        }
+	        var stepNumber = initial + index;
+	        var childProps = _extends({
+	          stepNumber: '' + (stepNumber + 1),
 	          prefixCls: prefixCls,
 	          iconPrefix: iconPrefix,
-	          wrapperStyle: style
-	        };
-	
-	        // fix tail color
-	        if (status === 'error' && idx === current - 1) {
-	          np.className = props.prefixCls + '-next-error';
+	          wrapperStyle: style,
+	          progressDot: progressDot,
+	          icons: icons
+	        }, child.props);
+	        if (!flexSupported && direction !== 'vertical' && index !== lastIndex) {
+	          childProps.itemWidth = 100 / lastIndex + '%';
+	          childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
 	        }
-	
-	        if (!ele.props.status) {
-	          if (idx === current) {
-	            np.status = status;
-	          } else if (idx < current) {
-	            np.status = 'finish';
+	        // fix tail color
+	        if (status === 'error' && index === current - 1) {
+	          childProps.className = prefixCls + '-next-error';
+	        }
+	        if (!child.props.status) {
+	          if (stepNumber === current) {
+	            childProps.status = status;
+	          } else if (stepNumber < current) {
+	            childProps.status = 'finish';
 	          } else {
-	            np.status = 'wait';
+	            childProps.status = 'wait';
 	          }
 	        }
-	        return _react2['default'].cloneElement(ele, np);
-	      }, this)
+	        return (0, _react.cloneElement)(child, childProps);
+	      })
 	    );
 	  };
 	
@@ -8194,6 +8272,409 @@
 
 /***/ }),
 /* 84 */
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * lodash (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 */
+	
+	/** Used as the `TypeError` message for "Functions" methods. */
+	var FUNC_ERROR_TEXT = 'Expected a function';
+	
+	/** Used as references for various `Number` constants. */
+	var NAN = 0 / 0;
+	
+	/** `Object#toString` result references. */
+	var symbolTag = '[object Symbol]';
+	
+	/** Used to match leading and trailing whitespace. */
+	var reTrim = /^\s+|\s+$/g;
+	
+	/** Used to detect bad signed hexadecimal string values. */
+	var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+	
+	/** Used to detect binary string values. */
+	var reIsBinary = /^0b[01]+$/i;
+	
+	/** Used to detect octal string values. */
+	var reIsOctal = /^0o[0-7]+$/i;
+	
+	/** Built-in method references without a dependency on `root`. */
+	var freeParseInt = parseInt;
+	
+	/** Detect free variable `global` from Node.js. */
+	var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+	
+	/** Detect free variable `self`. */
+	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+	
+	/** Used as a reference to the global object. */
+	var root = freeGlobal || freeSelf || Function('return this')();
+	
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+	
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+	
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeMax = Math.max,
+	    nativeMin = Math.min;
+	
+	/**
+	 * Gets the timestamp of the number of milliseconds that have elapsed since
+	 * the Unix epoch (1 January 1970 00:00:00 UTC).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 2.4.0
+	 * @category Date
+	 * @returns {number} Returns the timestamp.
+	 * @example
+	 *
+	 * _.defer(function(stamp) {
+	 *   console.log(_.now() - stamp);
+	 * }, _.now());
+	 * // => Logs the number of milliseconds it took for the deferred invocation.
+	 */
+	var now = function() {
+	  return root.Date.now();
+	};
+	
+	/**
+	 * Creates a debounced function that delays invoking `func` until after `wait`
+	 * milliseconds have elapsed since the last time the debounced function was
+	 * invoked. The debounced function comes with a `cancel` method to cancel
+	 * delayed `func` invocations and a `flush` method to immediately invoke them.
+	 * Provide `options` to indicate whether `func` should be invoked on the
+	 * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+	 * with the last arguments provided to the debounced function. Subsequent
+	 * calls to the debounced function return the result of the last `func`
+	 * invocation.
+	 *
+	 * **Note:** If `leading` and `trailing` options are `true`, `func` is
+	 * invoked on the trailing edge of the timeout only if the debounced function
+	 * is invoked more than once during the `wait` timeout.
+	 *
+	 * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+	 * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+	 *
+	 * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+	 * for details over the differences between `_.debounce` and `_.throttle`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Function
+	 * @param {Function} func The function to debounce.
+	 * @param {number} [wait=0] The number of milliseconds to delay.
+	 * @param {Object} [options={}] The options object.
+	 * @param {boolean} [options.leading=false]
+	 *  Specify invoking on the leading edge of the timeout.
+	 * @param {number} [options.maxWait]
+	 *  The maximum time `func` is allowed to be delayed before it's invoked.
+	 * @param {boolean} [options.trailing=true]
+	 *  Specify invoking on the trailing edge of the timeout.
+	 * @returns {Function} Returns the new debounced function.
+	 * @example
+	 *
+	 * // Avoid costly calculations while the window size is in flux.
+	 * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+	 *
+	 * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+	 * jQuery(element).on('click', _.debounce(sendMail, 300, {
+	 *   'leading': true,
+	 *   'trailing': false
+	 * }));
+	 *
+	 * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+	 * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+	 * var source = new EventSource('/stream');
+	 * jQuery(source).on('message', debounced);
+	 *
+	 * // Cancel the trailing debounced invocation.
+	 * jQuery(window).on('popstate', debounced.cancel);
+	 */
+	function debounce(func, wait, options) {
+	  var lastArgs,
+	      lastThis,
+	      maxWait,
+	      result,
+	      timerId,
+	      lastCallTime,
+	      lastInvokeTime = 0,
+	      leading = false,
+	      maxing = false,
+	      trailing = true;
+	
+	  if (typeof func != 'function') {
+	    throw new TypeError(FUNC_ERROR_TEXT);
+	  }
+	  wait = toNumber(wait) || 0;
+	  if (isObject(options)) {
+	    leading = !!options.leading;
+	    maxing = 'maxWait' in options;
+	    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+	    trailing = 'trailing' in options ? !!options.trailing : trailing;
+	  }
+	
+	  function invokeFunc(time) {
+	    var args = lastArgs,
+	        thisArg = lastThis;
+	
+	    lastArgs = lastThis = undefined;
+	    lastInvokeTime = time;
+	    result = func.apply(thisArg, args);
+	    return result;
+	  }
+	
+	  function leadingEdge(time) {
+	    // Reset any `maxWait` timer.
+	    lastInvokeTime = time;
+	    // Start the timer for the trailing edge.
+	    timerId = setTimeout(timerExpired, wait);
+	    // Invoke the leading edge.
+	    return leading ? invokeFunc(time) : result;
+	  }
+	
+	  function remainingWait(time) {
+	    var timeSinceLastCall = time - lastCallTime,
+	        timeSinceLastInvoke = time - lastInvokeTime,
+	        result = wait - timeSinceLastCall;
+	
+	    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+	  }
+	
+	  function shouldInvoke(time) {
+	    var timeSinceLastCall = time - lastCallTime,
+	        timeSinceLastInvoke = time - lastInvokeTime;
+	
+	    // Either this is the first call, activity has stopped and we're at the
+	    // trailing edge, the system time has gone backwards and we're treating
+	    // it as the trailing edge, or we've hit the `maxWait` limit.
+	    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+	      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+	  }
+	
+	  function timerExpired() {
+	    var time = now();
+	    if (shouldInvoke(time)) {
+	      return trailingEdge(time);
+	    }
+	    // Restart the timer.
+	    timerId = setTimeout(timerExpired, remainingWait(time));
+	  }
+	
+	  function trailingEdge(time) {
+	    timerId = undefined;
+	
+	    // Only invoke if we have `lastArgs` which means `func` has been
+	    // debounced at least once.
+	    if (trailing && lastArgs) {
+	      return invokeFunc(time);
+	    }
+	    lastArgs = lastThis = undefined;
+	    return result;
+	  }
+	
+	  function cancel() {
+	    if (timerId !== undefined) {
+	      clearTimeout(timerId);
+	    }
+	    lastInvokeTime = 0;
+	    lastArgs = lastCallTime = lastThis = timerId = undefined;
+	  }
+	
+	  function flush() {
+	    return timerId === undefined ? result : trailingEdge(now());
+	  }
+	
+	  function debounced() {
+	    var time = now(),
+	        isInvoking = shouldInvoke(time);
+	
+	    lastArgs = arguments;
+	    lastThis = this;
+	    lastCallTime = time;
+	
+	    if (isInvoking) {
+	      if (timerId === undefined) {
+	        return leadingEdge(lastCallTime);
+	      }
+	      if (maxing) {
+	        // Handle invocations in a tight loop.
+	        timerId = setTimeout(timerExpired, wait);
+	        return invokeFunc(lastCallTime);
+	      }
+	    }
+	    if (timerId === undefined) {
+	      timerId = setTimeout(timerExpired, wait);
+	    }
+	    return result;
+	  }
+	  debounced.cancel = cancel;
+	  debounced.flush = flush;
+	  return debounced;
+	}
+	
+	/**
+	 * Checks if `value` is the
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value;
+	  return !!value && (type == 'object' || type == 'function');
+	}
+	
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+	
+	/**
+	 * Checks if `value` is classified as a `Symbol` primitive or object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+	 * @example
+	 *
+	 * _.isSymbol(Symbol.iterator);
+	 * // => true
+	 *
+	 * _.isSymbol('abc');
+	 * // => false
+	 */
+	function isSymbol(value) {
+	  return typeof value == 'symbol' ||
+	    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+	}
+	
+	/**
+	 * Converts `value` to a number.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to process.
+	 * @returns {number} Returns the number.
+	 * @example
+	 *
+	 * _.toNumber(3.2);
+	 * // => 3.2
+	 *
+	 * _.toNumber(Number.MIN_VALUE);
+	 * // => 5e-324
+	 *
+	 * _.toNumber(Infinity);
+	 * // => Infinity
+	 *
+	 * _.toNumber('3.2');
+	 * // => 3.2
+	 */
+	function toNumber(value) {
+	  if (typeof value == 'number') {
+	    return value;
+	  }
+	  if (isSymbol(value)) {
+	    return NAN;
+	  }
+	  if (isObject(value)) {
+	    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+	    value = isObject(other) ? (other + '') : other;
+	  }
+	  if (typeof value != 'string') {
+	    return value === 0 ? value : +value;
+	  }
+	  value = value.replace(reTrim, '');
+	  var isBinary = reIsBinary.test(value);
+	  return (isBinary || reIsOctal.test(value))
+	    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+	    : (reIsBadHex.test(value) ? NAN : +value);
+	}
+	
+	module.exports = debounce;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.isFlexSupported = isFlexSupported;
+	function isFlexSupported() {
+	  if (typeof window !== 'undefined' && window.document && window.document.documentElement) {
+	    var documentElement = window.document.documentElement;
+	
+	    return 'flex' in documentElement.style || 'webkitFlex' in documentElement.style || 'Flex' in documentElement.style || 'msFlex' in documentElement.style;
+	  }
+	  return false;
+	}
+
+/***/ }),
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8206,7 +8687,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _beeIcon = __webpack_require__(85);
+	var _beeIcon = __webpack_require__(87);
 	
 	var _beeIcon2 = _interopRequireDefault(_beeIcon);
 	
@@ -8256,7 +8737,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8265,7 +8746,7 @@
 	  value: true
 	});
 	
-	var _Icon = __webpack_require__(86);
+	var _Icon = __webpack_require__(88);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -8275,7 +8756,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8354,7 +8835,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8492,7 +8973,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8556,7 +9037,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
