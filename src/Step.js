@@ -1,3 +1,7 @@
+/**
+* This source code is quoted from rc-steps.
+* homepage: https://github.com/react-component/steps
+*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
