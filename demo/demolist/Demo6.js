@@ -10,7 +10,7 @@ import Step from '../../src';
 
 const Steps = Step.Steps;
 
-class Demo5 extends Component {
+class Demo6 extends Component {
   render () {
       return (
         <div>
@@ -24,4 +24,4 @@ class Demo5 extends Component {
   }
 }
 
-export default Demo5;
+export default Demo6;
