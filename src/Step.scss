@@ -5,7 +5,7 @@
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5;
-    color: rgba(0, 0, 0, 0.65);
+    color: $font-color-base;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
@@ -48,8 +48,8 @@
 
 .u-steps-item-icon,
 .u-steps-item-content {
-    // display: inline-block;
-    vertical-align: top;
+    display: block;
+    // vertical-align: top;
 }
 
 .u-steps-item-icon {
@@ -66,15 +66,26 @@
     transition: background-color 0.3s, border-color 0.3s;
     font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
-.u-steps-horizontal .u-steps-item:not(:last-child) .u-steps-item-icon:after {
-    content: '';
-    height: 1px;
-    width: 9999px;
-    background: #e8e8e8;
-    display: block;
-    position: absolute;
-    top: 16px;
-    left: 40px;
+.u-steps-horizontal .u-steps-item:not(:last-child) {
+    .u-steps-item-icon:after{
+        content: '';
+        height: 1px;
+        width: 9999px;
+        background: #e8e8e8;
+        display: block;
+        position: absolute;
+        top: 16px;
+        left: 40px;
+    }
+    &.u-steps-item-finish>.u-steps-item-icon:after {
+        background-color: #a5adba;
+    }
+    &.u-steps-item-process>.u-steps-item-icon:after {
+        background-color: #DFE1E6;
+    }
+    &.u-steps-item-wait>.u-steps-item-icon:after {
+        background-color: #DFE1E6;
+    }
 }
 .u-steps-small.u-steps-horizontal .u-steps-item-icon:after {
     top: 12px;
@@ -99,7 +110,7 @@
 .u-steps-item-tail:after {
     content: '';
     display: inline-block;
-    background: #e8e8e8;
+    background: #DFE1E6;
     height: 1px;
     border-radius: 1px;
     width: 100%;
@@ -109,7 +120,7 @@
 
 .u-steps-item-title {
     font-size: $font-size-base;
-    color: rgba(0, 0, 0, 0.65);
+    color: $font-color-base;
     display: inline-block;
     padding-right: 16px;
     position: relative;
@@ -141,10 +152,6 @@
     color: $disabled-color-base;
 }
 
-.u-steps-item-wait>.u-steps-item-icon:after {
-    background-color: #DFE1E6;
-}
-
 .u-steps-item-wait>.u-steps-item-content>.u-steps-item-description {
     color: $disabled-color-base;
 }
@@ -168,10 +175,6 @@
 
 .u-steps-item-process>.u-steps-item-content>.u-steps-item-title {
     color: $font-color-base;
-}
-
-.u-steps-item-process>.u-steps-item-icon:after {
-    background-color: #DFE1E6;
 }
 
 .u-steps-item-process>.u-steps-item-content>.u-steps-item-description {
@@ -216,10 +219,6 @@
 
 .u-steps-item-finish>.u-steps-item-content>.u-steps-item-title {
     color: $font-color-base;
-}
-
-.u-steps-item-finish>.u-steps-item-icon:after {
-    background-color: #a5adba;
 }
 
 .u-steps-item-finish>.u-steps-item-content>.u-steps-item-description {
@@ -308,7 +307,7 @@
 }
 
 .u-steps-item-custom.u-steps-item-process .u-steps-item-icon>.u-steps-icon {
-    color: $brand-primary;
+    color: #505F79;
 }
 
 .u-steps-small.u-steps-horizontal:not(.u-steps-label-vertical) .u-steps-item {
@@ -338,13 +337,13 @@
     padding-right: 12px;
 }
 
-.u-steps-small .u-steps-item-title:after {
-    top: 12px;
-}
+// .u-steps-small .u-steps-item-title:after {
+//     top: 12px;
+// }
 
 .u-steps-small .u-steps-item-description {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.45);
+    color: $disabled-color-base;
 }
 
 .u-steps-small .u-steps-item-tail {
