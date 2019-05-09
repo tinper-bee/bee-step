@@ -81,6 +81,9 @@
   top: 12px;
   left: 32px; }
 
+.u-steps .u-steps-item-title:after {
+  display: none; }
+
 .u-steps-item-icon > .u-steps-icon {
   line-height: 1;
   top: -1px;
@@ -216,7 +219,7 @@
   background-color: #DFE1E6; }
 
 .u-steps-item.u-steps-next-error .u-steps-item-title:after {
-  background: #f5222d; }
+  display: none; }
 
 .u-steps-horizontal:not(.u-steps-label-vertical) .u-steps-item {
   margin-right: 8px;
@@ -273,6 +276,9 @@
   font-size: 14px;
   line-height: 24px;
   padding-right: 12px; }
+
+.u-steps-small .u-steps-item-title:after {
+  display: none; }
 
 .u-steps-small .u-steps-item-description {
   font-size: 14px;
