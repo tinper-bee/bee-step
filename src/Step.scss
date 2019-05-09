@@ -87,7 +87,7 @@
         background-color: #DFE1E6;
     }
 }
-.u-steps-small.u-steps-horizontal .u-steps-item-icon:after {
+.u-steps-small.u-steps-horizontal .u-steps-item:not(:last-child) .u-steps-item-icon:after {
     top: 12px;
     left: 32px;
 }
@@ -404,13 +404,14 @@
         position: absolute;
         left: 16px;
         top: 0;
-        height: calc(100% - 46px);
+        height: 100%;
+        // height: calc(100% - 46px);
         width: 1px;
         padding: 38px 0 6px;
     }
-    &.u-steps-small>.u-steps-item>.u-steps-item-tail{
-        height: calc(100% - 38px);
-    }
+    // &.u-steps-small>.u-steps-item>.u-steps-item-tail{
+    //     height: calc(100% - 38px);
+    // }
 }
 
 .u-steps-vertical>.u-steps-item>.u-steps-item-tail:after {
